@@ -27,6 +27,21 @@ document.addEventListener("DOMContentLoaded", () => {
       : '<i class="bi bi-music-note-beamed"></i> لحظة حب';
   });
 
+  const memoryModalElement = document.querySelector("#memoryModal");
+  const modalMemoryImage = document.querySelector("#modalMemoryImage");
+  const modalMemoryCaption = document.querySelector("#modalMemoryCaption");
+  const memoryModal = new bootstrap.Modal(memoryModalElement);
+  document.querySelectorAll(".memory-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const image = card.querySelector("img");
+      const caption = card.querySelector(".memory-overlay span").textContent;
+      modalMemoryImage.src = image.src;
+      modalMemoryImage.alt = image.alt;
+      modalMemoryCaption.textContent = caption;
+      memoryModal.show();
+    });
+  });
+
   const counters = document.querySelectorAll("[data-count]");
   const observer = new IntersectionObserver((entries, currentObserver) => {
     entries.forEach((entry) => {
